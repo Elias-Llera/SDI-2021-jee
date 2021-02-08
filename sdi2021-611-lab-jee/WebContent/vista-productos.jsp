@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 
-<html lang="en">
+<html>
 
 <head>
-<title>JSP</title>
-<meta charset="utf-8" />
+<title>Vista productos</title>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -21,14 +20,16 @@
 <body>
 	<!-- Contenido -->
 	<div class="container" id="contenedor-principal">
-		<h2>Vista-Carrito</h2>
+		<h2>Vista-Productos</h2>
 		<ul>
-			<c:forEach var="par" items="${paresCarrito}">
+			<c:forEach var="producto" items="${productosTienda}">
 				<tr>
-					<li>${par.key}-${par.value} <a href= "eliminarDeCarrito?producto=${par.key}">Eliminar producto</a> </li>
+					<li>${producto.nombre}-${producto.precio}</li>
 				</tr>
 			</c:forEach>
 		</ul>
 	</div>
 	<a href="index.jsp">Volver</a>
 </body>
+
+</html>
