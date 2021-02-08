@@ -38,10 +38,16 @@ public class ServletEliminarDeCarrito extends HttpServlet {
 		HashMap<String, Integer> carrito = (HashMap<String, Integer>) session.getAttribute("carrito");
 		
 		//Eliminar producto
-		carrito.remove(request.getParameter("producto"));
+		String producto = request.getParameter("producto");
+		int cantidad = carrito.get(producto);
+		if(cantidad == 1) {
+			carrito.remove(request.getParameter("producto"));
+		}else {
+			carrito.put(producto, --cantidad);
+		}
 		
 		//Actualizar vista
-		request.setAttribute("carrito", carrito);
+		request.setAttribute("paresCarrito", carrito);
 		getServletContext().getRequestDispatcher("/vista-carrito.jsp").forward(request, response);
 	}
 

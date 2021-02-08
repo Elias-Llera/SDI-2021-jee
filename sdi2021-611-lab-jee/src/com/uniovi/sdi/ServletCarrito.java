@@ -1,7 +1,6 @@
 package com.uniovi.sdi;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
