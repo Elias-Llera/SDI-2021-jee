@@ -41,7 +41,7 @@ public class ServletEliminarDeCarrito extends HttpServlet {
 		String producto = request.getParameter("producto");
 		int cantidad = carrito.get(producto);
 		if(cantidad == 1) {
-			carrito.remove(request.getParameter("producto"));
+			carrito.remove(producto);
 		}else {
 			carrito.put(producto, --cantidad);
 		}
