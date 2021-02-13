@@ -1,6 +1,7 @@
 package com.uniovi.entities;
 
 public class Mark {
+	
 	private Long id;
 	private String description;
 	private Double score;
