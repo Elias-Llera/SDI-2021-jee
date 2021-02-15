@@ -1,7 +1,10 @@
 package com.uniovi.entities;
 
+import javax.persistence.Id;
+
 public class Professor {
 
+	@Id
 	private String DNI;
 	private String name;
 	private String surname;

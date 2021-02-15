@@ -1,47 +1,43 @@
 package com.uniovi.services;
 
-import java.util.HashMap;
-
-import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Professor;
+import com.uniovi.repositories.ProfessorRespository;
 
+@Service
 public class ProfessorService {
 
-	private HashMap<String, Professor> profesores = new HashMap<String, Professor>();
-
-	@PostConstruct
-	public void init() {
-		profesores.put("1", new Professor("1", "Paco", "García", "Categoria1"));
-		profesores.put("2", new Professor("2", "Pepe", "Lopez", "Categoria2"));
-	}
+	@Autowired
+	private ProfessorRespository professorRepository;
 
 	public Professor getProfessor(String dni) {
-		return profesores.get(dni);
+		return professorRepository.findById(dni).get();
 	}
 
 	public void addProfessor(Professor profesor) {
-		profesores.put(profesor.getDNI(), profesor);
+		professorRepository.save(profesor);
 	}
 
 	public void deleteProfessor(String dni) {
-		profesores.remove(dni);
+		professorRepository.deleteById(dni);
 	}
 
-	public void editProfessor(String oldDni, String newDni, String name, String surname, String category) {
+	public void editProfessor(String oldDni, Professor newProfessorData) {
 		Professor p = getProfessor(oldDni);
-		profesores.remove(oldDni);
-		if (!newDni.equals(null)) {
-			p.setDNI(newDni);
+		deleteProfessor(oldDni);;
+		if (!newProfessorData.getDNI().equals(null)) {
+			p.setDNI(newProfessorData.getDNI());
 		}
-		if (!name.equals(null)) {
-			p.setName(name);
+		if (!newProfessorData.getName().equals(null)) {
+			p.setName(newProfessorData.getName());
 		}
-		if (!surname.equals(null)) {
-			p.setSurname(surname);
+		if (!newProfessorData.getSurname().equals(null)) {
+			p.setSurname(newProfessorData.getSurname());
 		}
-		if (!category.equals(null)) {
-			p.setCategory(category);
+		if (!newProfessorData.getCategory().equals(null)) {
+			p.setCategory(newProfessorData.getCategory());
 
 		}
 		addProfessor(p);

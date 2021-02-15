@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uniovi.entities.Professor;
@@ -20,6 +21,12 @@ public class ProfessorController {
 		professorService.addProfessor(profesor);
 		return "Profesor añadido";
 	}
+	
+	@RequestMapping(value = "/professor/add", method = RequestMethod.POST)
+	public String setProfessor(@ModelAttribute Professor profesor) {
+		professorService.addProfessor(profesor);
+		return "Profesor añadido";
+	}
 
 	@RequestMapping("/professor/remove/{dni}")
 	public String deleteProfessor(@PathVariable String dni) {
@@ -27,9 +34,15 @@ public class ProfessorController {
 		return "Profesor eliminado";
 	}
 
-	@RequestMapping("/professor/edit/{oldDni}")
+	@RequestMapping("/professor/edit/{oldDni}") //respuesta a get, saca los datos a modificar
 	public String getEdit(@PathVariable String oldDni, @ModelAttribute Professor newProfessorData) {
-		professorService.editProfessor(oldDni, newProfessorData.getDNI(), newProfessorData.getName(), newProfessorData.getSurname(), newProfessorData.getCategory());
+		professorService.editProfessor(oldDni, newProfessorData);
+		return "Profesor editado";
+	}
+	
+	@RequestMapping(value = "/professor/edit/{oldDni}", method = RequestMethod.POST) //respuesta a pot, introduce nuevos datos
+	public String setEdit(@PathVariable String oldDni, @ModelAttribute Professor newProfessorData) {
+		professorService.editProfessor(oldDni, newProfessorData);
 		return "Profesor editado";
 	}
 
