@@ -33,7 +33,6 @@ public class ProfessorController {
 		professorService.deleteProfessor(dni);
 		return "Profesor eliminado";
 	}
-
 	
 	//------------De momento ambos realizan la misma funcion------------
 	@RequestMapping("/professor/edit/{oldDni}") //respuesta a get, saca los datos a modificar
