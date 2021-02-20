@@ -11,9 +11,26 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="/mark/list">Ver Notas</a></li>
-				<li><a href="/mark/add">Agregar Nota</a></li>
-				<li><a href="/mark/filter">Filtrar</a></li>
+				<li><a href="/"> Home </a></li>
+				
+				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> Gestión de notas <span
+						class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="/mark/add">Agregar nota</a></li>
+						<li><a href="/mark/list">Ver notas</a></li>
+					</ul></li>
+				
+				<li id="users-menu" class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> Gestión de Usuarios <span
+						class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="/user/add">Agregar usuario</a></li>
+						<li><a href="/user/list">Ver usuarios</a></li>
+					</ul></li>
+					
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href=" #"
