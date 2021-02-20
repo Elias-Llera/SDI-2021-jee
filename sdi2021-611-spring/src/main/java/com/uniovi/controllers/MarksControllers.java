@@ -46,17 +46,24 @@ public class MarksControllers {
 		return "redirect:/mark/list";
 	}
 
-	@RequestMapping("/mark/edit/{id}")//peticion get, muestra los datos de editar
+	@RequestMapping("/mark/edit/{id}") // peticion get, muestra los datos de editar
 	public String getEdit(Model model, @PathVariable Long id) {
 		model.addAttribute("mark", marksService.getMark(id));
 		return "mark/edit";
 	}
 
-	@RequestMapping(value = "/mark/edit/{id}", method = RequestMethod.POST)//peticion post, modifica los datos de editar
+	@RequestMapping(value = "/mark/edit/{id}", method = RequestMethod.POST) // peticion post, modifica los datos de
+																			// editar
 	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute Mark mark) {
 		mark.setId(id);
 		marksService.addMark(mark);
 		return "redirect:/mark/details/" + id;
+	}
+
+	@RequestMapping("/mark/list/update")
+	public String updateList(Model model) {
+		model.addAttribute("markList", marksService.getMarks());
+		return "mark/list :: tableMarks";
 	}
 
 }
