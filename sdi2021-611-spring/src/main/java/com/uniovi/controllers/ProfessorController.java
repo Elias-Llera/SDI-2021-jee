@@ -34,6 +34,8 @@ public class ProfessorController {
 		return "Profesor eliminado";
 	}
 
+	
+	//------------De momento ambos realizan la misma funcion------------
 	@RequestMapping("/professor/edit/{oldDni}") //respuesta a get, saca los datos a modificar
 	public String getEdit(@PathVariable String oldDni, @ModelAttribute Professor newProfessorData) {
 		professorService.editProfessor(oldDni, newProfessorData);
@@ -45,6 +47,7 @@ public class ProfessorController {
 		professorService.editProfessor(oldDni, newProfessorData);
 		return "Profesor editado";
 	}
+	//--------------------------------------------------------
 
 	@RequestMapping("/professor/details/{dni}")
 	public String getDetail(@PathVariable String dni) {
