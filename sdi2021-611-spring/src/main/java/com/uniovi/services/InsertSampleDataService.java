@@ -10,20 +10,26 @@ import com.uniovi.entities.User;
 
 @Service
 public class InsertSampleDataService {
-	
+
 	@Autowired
 	private UsersService usersService;
 
 	@PostConstruct
 	public void init() {
-		
+
 		User user1 = new User("99999990A", "Pedro", "Díaz");
+		user1.setPassword("123456");
 		User user2 = new User("99999991B", "Lucas", "Núñez");
+		user2.setPassword("123456");
 		User user3 = new User("99999992C", "María", "Rodríguez");
+		user3.setPassword("123456");
 		User user4 = new User("99999993D", "Marta", "Almonte");
+		user4.setPassword("123456");
 		User user5 = new User("99999977E", "Pelayo", "Valdes");
+		user5.setPassword("123456");
 		User user6 = new User("99999988F", "Edward", "Núñez");
-		
+		user6.setPassword("123456");
+
 		Set user1Marks = new HashSet<Mark>() {
 			{
 				add(new Mark("Nota A1", 10.0, user1));
@@ -33,7 +39,7 @@ public class InsertSampleDataService {
 			}
 		};
 		user1.setMarks(user1Marks);
-		
+
 		Set user2Marks = new HashSet<Mark>() {
 			{
 				add(new Mark("Nota B1", 5.0, user2));
@@ -43,7 +49,7 @@ public class InsertSampleDataService {
 			}
 		};
 		user2.setMarks(user2Marks);
-		
+
 		Set user3Marks = new HashSet<Mark>() {
 			{
 				;
@@ -53,7 +59,7 @@ public class InsertSampleDataService {
 			}
 		};
 		user3.setMarks(user3Marks);
-		
+
 		Set user4Marks = new HashSet<Mark>() {
 			{
 				add(new Mark("Nota D1", 10.0, user4));
@@ -62,7 +68,7 @@ public class InsertSampleDataService {
 			}
 		};
 		user4.setMarks(user4Marks);
-		
+
 		usersService.addUser(user1);
 		usersService.addUser(user2);
 		usersService.addUser(user3);
