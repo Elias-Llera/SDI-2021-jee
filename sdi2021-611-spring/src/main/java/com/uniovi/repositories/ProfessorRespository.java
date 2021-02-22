@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.uniovi.entities.Professor;
 
-public interface ProfessorRespository extends CrudRepository<Professor, String> {
+public interface ProfessorRespository extends CrudRepository<Professor, Long> {
 
 }

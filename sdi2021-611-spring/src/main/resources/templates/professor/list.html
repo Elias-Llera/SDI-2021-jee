@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head th:replace="fragments/head" />
+
+<body>
+	<!-- Barra de Navegación superior -->
+	<nav th:replace="fragments/nav" />
+
+	<!-- Contenido -->
+	<div class="container">
+
+		<h2>Profesores</h2>
+
+		<p>Los profesores que actualmente figuran en el sistema son los
+			siguientes:</p>
+
+		<a th:href="${'/professor/add'}"><button type="button"
+				id="addButton" class="btn btn-default">Añadir</button></a>
+
+		<div class="table-responsive">
+			<table class="table table-hover" id="tableProfessors">
+				<thead>
+					<tr>
+						<th>DNI</th>
+						<th>Nombre</th>
+						<th>Apellidos</th>
+						<th class="col-md-1"></th>
+						<th class="col-md-1"></th>
+						<th class="col-md-1"></th>
+						<th class="col-md-1"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="professor : ${professorsList}">
+						<td th:text="${professor.dni}">71888888X</td>
+						<td th:text="${professor.name}">Nombre del profesor</td>
+						<td th:text="${professor.surname}">Apellidos del profesor</td>
+						<td><a th:href="${'/professor/details/' + professor.id}">detalles</a></td>
+						<td><a th:href="${'/professor/edit/' + professor.id}">modificar</a></td>
+						<td><a th:href="${'/professor/delete/' + professor.id}">eliminar</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer th:replace="fragments/footer" />
+</body>
+
+</html>

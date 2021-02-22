@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Mark {
+	
 	@Id
 	@GeneratedValue
 	private Long id;

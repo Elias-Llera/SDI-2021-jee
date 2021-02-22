@@ -1,8 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head th:replace="fragments/head" />
+
 <body>
+
 	<nav th:replace="fragments/nav" />
+	
 	<div class="container">
 		<h2>Idéntificate</h2>
 		<form class="form-horizontal" method="post" action="/login">
@@ -29,6 +34,8 @@
 				value="${_csrf.token}" />
 		</form>
 	</div>
+	
 	<footer th:replace="fragments/footer" />
 </body>
+
 </html>

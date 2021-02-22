@@ -12,25 +12,33 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li><a href="/"> Home </a></li>
-				
+
 				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> Gestión de notas <span
-						class="caret"></span>
+					data-toggle="dropdown" href="#" th:text="#{marks.management}">
+						Gestión de notas <span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/mark/add">Agregar nota</a></li>
-						<li><a href="/mark/list">Ver notas</a></li>
+						<li><a href="/mark/add" th:text="#{marks.add}">Agregar
+								nota</a></li>
+						<li><a href="/mark/list" th:text="#{marks.list}">Ver
+								notas</a></li>
 					</ul></li>
-				
+
 				<li id="users-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> Gestión de Usuarios <span
-						class="caret"></span>
+					data-toggle="dropdown" href="#" th:text="#{users.management}">
+						Gestión de Usuarios <span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/add">Agregar usuario</a></li>
-						<li><a href="/user/list">Ver usuarios</a></li>
+						<li><a href="/user/add" th:text="#{users.add}">Agregar
+								usuario</a></li>
+						<li><a href="/user/list" th:text="#{users.list}">Ver
+								usuarios</a></li>
 					</ul></li>
-					
+
+				<li><a href="/professor/list" th:text="#{professors.management}"> <span
+						class="glyphicon glyphicon-user"></span> Gestión de profesores
+				</a></li>
+
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href=" #"
@@ -48,6 +56,11 @@
 								th:src="@{/img/if_spain_flag.png}"
 								style="border: 0; float: left; margin-right: 15px" /> <span
 								th:text="#{language.es}">Español</span>
+						</a></li>
+						<li><a id="btnFrench" value="FR"> <img
+								th:src="@{/img/if_france_flag.png}"
+								style="border: 0; float: left; margin-right: 15px" /> <span
+								th:text="#{language.fr}">Francés</span>
 						</a></li>
 					</ul></li>
 				<li><a href="/signup" th:text="#{signup.message}"> <span

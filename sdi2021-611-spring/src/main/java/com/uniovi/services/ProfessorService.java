@@ -21,36 +21,16 @@ public class ProfessorService {
 		return profesores;
 	}
 
-	public Professor getProfessor(String dni) {
-		return professorRepository.findById(dni).get();
+	public Professor getProfessor(Long id) {
+		return professorRepository.findById(id).get();
 	}
 
 	public void addProfessor(Professor profesor) {
 		professorRepository.save(profesor);
 	}
 
-	public void deleteProfessor(String dni) {
-		professorRepository.deleteById(dni);
-	}
-
-	public void editProfessor(String oldDni, Professor newProfessorData) {
-		Professor p = getProfessor(oldDni);
-		deleteProfessor(oldDni);
-		;
-		if (!newProfessorData.getDNI().equals(null)) {
-			p.setDNI(newProfessorData.getDNI());
-		}
-		if (!newProfessorData.getName().equals(null)) {
-			p.setName(newProfessorData.getName());
-		}
-		if (!newProfessorData.getSurname().equals(null)) {
-			p.setSurname(newProfessorData.getSurname());
-		}
-		if (!newProfessorData.getCategory().equals(null)) {
-			p.setCategory(newProfessorData.getCategory());
-
-		}
-		addProfessor(p);
+	public void deleteProfessor(Long id) {
+		professorRepository.deleteById(id);
 	}
 
 }
