@@ -43,6 +43,7 @@ public class UsersController {
 
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
 	public String setUser(@ModelAttribute User user) {
+		user.setPassword("123456");
 		usersService.addUser(user);
 		return "redirect:/user/list";
 	}
@@ -68,8 +69,11 @@ public class UsersController {
 
 	@RequestMapping(value = "/user/edit/{id}", method = RequestMethod.POST)
 	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute User user) {
-		user.setId(id);
-		usersService.addUser(user);
+		User original = usersService.getUser(id);
+		//Modificar nombre y apellido
+		original.setName(user.getName());
+		original.setLastName(user.getLastName());
+		usersService.addUser(original);
 		return "redirect:/user/details/" + id;
 	}
 
@@ -102,6 +106,12 @@ public class UsersController {
 		User activeUser = usersService.getUserByDni(dni);
 		model.addAttribute("markList", activeUser.getMarks());
 		return "home";
+	}
+	
+	@RequestMapping("/user/list/update")
+	public String updateList(Model model) {
+		model.addAttribute("markList", usersService.getUsers());
+		return "user/list :: tableUsers";
 	}
 
 }
