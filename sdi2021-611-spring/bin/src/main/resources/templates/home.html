@@ -12,9 +12,9 @@
 	<div class="container" style="text-align: center">
 		<h2 th:text="#{welcome.message}"></h2>
 		<h3 th:text="#{home.private.message}"></h3>
-		<p th:text="#{home.user.identified}">Usuario Autenticado como :</p>
 		<p>
-			<b th:inline="text"> [[${#httpServletRequest.remoteUser}]] </b>
+			Usuario Autenticado como : <b th:inline="text">
+				[[${#httpServletRequest.remoteUser}]] </b>
 		</p>
 
 		<p th:text="#{home.marks}">Notas del usuario</p>
@@ -39,16 +39,14 @@
 						<td th:text="${mark.score}">10</td>
 						<td th:text="#{options.details}"><a
 							th:href="${'/mark/details/' + mark.id}">detalles</a></td>
-						<td th:text="#{options.modify}"><a
-							th:href="${'/mark/edit/' + mark.id}">modificar</a></td>
-						<td th:text="#{options.delete}"><a
-							th:href="${'/mark/delete/' + mark.id}">eliminar</a></td>
+						<td th:text="#{options.modify}"><a th:href="${'/mark/edit/' + mark.id}">modificar</a></td>
+						<td th:text="#{options.delete}"><a th:href="${'/mark/delete/' + mark.id}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-
+	
 	<!-- Footer -->
 	<footer th:replace="fragments/footer" />
 
