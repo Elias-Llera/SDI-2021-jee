@@ -11,7 +11,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="/"> Home </a></li>
+				<li><a href="/" th:text="#{nav.home}"> Home </a></li>
 
 				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#" th:text="#{marks.management}">
@@ -58,7 +58,7 @@
 								th:text="#{language.es}">Español</span>
 						</a></li>
 						<li><a id="btnFrench" value="FR"> <img
-								th:src="@{/img/if_france_flag.png}"
+								th:src="@{/img/if_fr_flag.png}"
 								style="border: 0; float: left; margin-right: 15px" /> <span
 								th:text="#{language.fr}">Francés</span>
 						</a></li>
