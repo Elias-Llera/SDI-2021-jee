@@ -3,6 +3,8 @@ package com.uniovi.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uniovi.entities.Professor;
 import com.uniovi.services.ProfessorService;
+import com.uniovi.validators.ProfessorValidator;
 
 @Controller
 public class ProfessorController {
 
 	@Autowired
 	private ProfessorService professorService;
+	
+	@Autowired
+	private ProfessorValidator ProfessorValidator;
 
 //------------------------------List------------------------------
 	@RequestMapping("/professor/list")
@@ -27,13 +33,18 @@ public class ProfessorController {
 //------------------------------Add-------------------------------
 	@RequestMapping("/professor/add")
 	public String getProfessor(Model model) {
+		model.addAttribute("professor", new Professor());
 		model.addAttribute("professorsList", professorService.getProfessors());
 		return "professor/add";
 	}
 
 	@RequestMapping(value = "/professor/add", method = RequestMethod.POST)
-	public String setProfessor(@ModelAttribute Professor profesor) {
-		professorService.addProfessor(profesor);
+	public String setProfessor(@Validated Professor professor, BindingResult result) {
+		ProfessorValidator.validate(professor, result);
+		if(result.hasErrors()) {
+			return "professor/add";
+		}
+		professorService.addProfessor(professor);
 		return "redirect:/professor/list";
 	}
 

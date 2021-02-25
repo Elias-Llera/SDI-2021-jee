@@ -11,7 +11,8 @@
 	<!-- Contenido -->
 	<div class="container">
 		<h2>Agregar Nota</h2>
-		<form class="form-horizontal" method="post" action="/mark/add">
+		<form class="form-horizontal" method="post" action="/mark/add"
+			th:object="${mark}">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="user">Alumno:</label>
 				<div class="col-sm-10"
@@ -27,14 +28,18 @@
 				<label class="control-label col-sm-2" for="description">Descripcion:</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="description"
-						placeholder="Ejemplo Ejercicio 1" required="true" />
+						placeholder="Ejemplo Ejercicio 1" required="true" /><span
+						class="text-danger" th:if="${#fields.hasErrors('description')}"
+						th:errors="*{description}" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="pwd">Puntuación:</label>
 				<div class="col-sm-10">
 					<input type="number" class="form-control" name="score"
-						placeholder="Enetre 0 y 10" required="true" />
+						placeholder="Enetre 0 y 10" required="true" /><span
+						class="text-danger" th:if="${#fields.hasErrors('score')}"
+						th:errors="*{score}" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -44,7 +49,7 @@
 			</div>
 		</form>
 	</div>
-	
+
 	<!-- Footer -->
 	<footer th:replace="fragments/footer" />
 </body>
