@@ -38,13 +38,13 @@
 						<td th:text="${mark.description}">Ejercicio 1</td>
 						<td th:text="${mark.score}">10</td>
 						<td th:text="#{options.details}"><a
-							th:href="${'/mark/details/' + mark.id}">detalles</a></td>
-						<td th:text="#{options.modify}"><a
-							sec:authorize="hasRole('ROLE_PROFESSOR')"
-							th:href="${'/mark/edit/' + mark.id}">modificar</a></td>
-						<td th:text="#{options.delete}"><a
-							sec:authorize="hasRole('ROLE_PROFESSOR')"
-							th:href="${'/mark/delete/' + mark.id}">eliminar</a></td>
+							href="${'/mark/details/' + mark.id}">detalles</a></td>
+						<td th:text="#{options.modify}"
+							sec:authorize="hasRole('ROLE_PROFESSOR')"><a
+							href="${'/mark/edit/' + mark.id}">modificar</a></td>
+						<td th:text="#{options.delete}"
+							sec:authorize="hasRole('ROLE_PROFESSOR')"><a
+							href="${'/mark/delete/' + mark.id}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>

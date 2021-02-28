@@ -25,10 +25,17 @@
 			siguientes:</p>
 
 		<button type="button" id="updateButton" class="btn btn-default">Actualizar</button>
-		<script>
+		<script th:inline="javascript">
+			/*<![CDATA[*/
 			$("#updateButton").click(function() {
-				$("#tableMarks").load('/mark/list/update');
+				var numberPage = [[${param.page}]];
+				var urlUpdate = '/mark/list/update';
+				if (numberPage != null ){
+					urlUpdate += "?page="+numberPage[0];
+				}
+				$("#tableMarks").load(urlUpdate);
 			});
+			/*]]>*/
 		</script>
 
 		<div class="table-responsive">
@@ -58,20 +65,16 @@
 										class="btn btn-info">Reenviar</button>
 									<script th:inline="javascript">
 										/*<![CDATA[*/
-										$("#resendButton[[${mark.id}]]")
-												.click(
-														function() {
-															$
-																	.get(
-																			"/mark/[[${mark.id}]]/noresend",
-																			function(
-																					data) {
-																				$(
-																						"#tableMarks")
-																						.load(
-																								'/mark/list/update');
-																			});
-														});
+										$("#resendButton[[${mark.id}]]").click(function() {
+											$.get("/mark/[[${mark.id}]]/noresend",function(data) {
+												var numberPage = [[${param.page}]];
+												var urlUpdate = '/mark/list/update';
+												if ( numberPage != null ){
+													urlUpdate += "?page="+numberPage[0];
+												}
+												$("#tableMarks").load(urlUpdate);
+											});
+										});
 										/*]]>*/
 									</script>
 								</div>
@@ -80,20 +83,16 @@
 										class="btn btn-default">No reenviar</button>
 									<script th:inline="javascript">
 										/*<![CDATA[*/
-										$("#noresendButton[[${mark.id}]]")
-												.click(
-														function() {
-															$
-																	.get(
-																			"/mark/[[${mark.id}]]/resend",
-																			function(
-																					data) {
-																				$(
-																						"#tableMarks")
-																						.load(
-																								'/mark/list/update');
-																			});
-														});
+										$("#noresendButton[[${mark.id}]]").click(function() {
+											$.get("/mark/[[${mark.id}]]/resend",function(data) {
+												var numberPage = [[${param.page}]];
+												var urlUpdate = '/mark/list/update';
+												if ( numberPage != null ){
+													urlUpdate += "?page="+numberPage[0];
+												}
+												$("#tableMarks").load(urlUpdate);
+											});
+										});
 										/*]]>*/
 									</script>
 								</div>
@@ -104,6 +103,7 @@
 				</tbody>
 			</table>
 		</div>
+		<footer th:replace="fragments/pagination" />
 	</div>
 
 	<!-- Footer -->
