@@ -14,7 +14,7 @@
 		<h3 th:text="#{home.private.message}"></h3>
 		<p th:text="#{home.user.identified}">Usuario Autenticado como :</p>
 		<p>
-			<b th:inline="text"> [[${#httpServletRequest.remoteUser}]] </b>
+			<b><span sec:authentication="principal.username" th:inline="text"></b>
 		</p>
 
 		<p th:text="#{home.marks}">Notas del usuario</p>
@@ -40,8 +40,10 @@
 						<td th:text="#{options.details}"><a
 							th:href="${'/mark/details/' + mark.id}">detalles</a></td>
 						<td th:text="#{options.modify}"><a
+							sec:authorize="hasRole('ROLE_PROFESSOR')"
 							th:href="${'/mark/edit/' + mark.id}">modificar</a></td>
 						<td th:text="#{options.delete}"><a
+							sec:authorize="hasRole('ROLE_PROFESSOR')"
 							th:href="${'/mark/delete/' + mark.id}">eliminar</a></td>
 					</tr>
 				</tbody>
