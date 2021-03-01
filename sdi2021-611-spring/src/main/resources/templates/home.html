@@ -19,36 +19,8 @@
 
 		<p th:text="#{home.marks}">Notas del usuario</p>
 
-		<div class="table-responsive">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th class="col-md-1">id</th>
-						<th th:text="#{mark.description}">Descripción</th>
-						<th th:text="#{mark.score}">Puntuación</th>
-						<th class="col-md-1"></th>
-						<th class="col-md-1"></th>
-						<th class="col-md-1"></th>
-					</tr>
-				</thead>
+		<div th:replace="fragments/marksTable.html" />
 
-				<tbody>
-					<tr th:each="mark : ${markList}">
-						<td th:text="${mark.id}">1</td>
-						<td th:text="${mark.description}">Ejercicio 1</td>
-						<td th:text="${mark.score}">10</td>
-						<td th:text="#{options.details}"><a
-							href="${'/mark/details/' + mark.id}">detalles</a></td>
-						<td th:text="#{options.modify}"
-							sec:authorize="hasRole('ROLE_PROFESSOR')"><a
-							href="${'/mark/edit/' + mark.id}">modificar</a></td>
-						<td th:text="#{options.delete}"
-							sec:authorize="hasRole('ROLE_PROFESSOR')"><a
-							href="${'/mark/delete/' + mark.id}">eliminar</a></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
 	</div>
 
 	<!-- Footer -->

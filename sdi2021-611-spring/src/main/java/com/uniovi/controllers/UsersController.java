@@ -1,6 +1,7 @@
 package com.uniovi.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -105,7 +106,7 @@ public class UsersController {
 	}
 
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model, Pageable pageable) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String dni = auth.getName();
 		User activeUser = usersService.getUserByDni(dni);

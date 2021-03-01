@@ -16,7 +16,7 @@
 		<p>Los profesores que actualmente figuran en el sistema son los
 			siguientes:</p>
 
-		<a th:href="${'/professor/add'}"><button type="button"
+		<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/professor/add'}"><button type="button"
 				id="addButton" class="btn btn-default">Añadir</button></a>
 
 		<div class="table-responsive">
@@ -37,9 +37,9 @@
 						<td th:text="${professor.dni}">71888888X</td>
 						<td th:text="${professor.name}">Nombre del profesor</td>
 						<td th:text="${professor.surname}">Apellidos del profesor</td>
-						<td><a th:href="${'/professor/details/' + professor.id}">detalles</a></td>
-						<td><a th:href="${'/professor/edit/' + professor.id}">modificar</a></td>
-						<td><a th:href="${'/professor/delete/' + professor.id}">eliminar</a></td>
+						<td sec:authorize="hasAnyRole('ROLE_PROFESSOR', 'ROLE_ADMIN')"><a th:href="${'/professor/details/' + professor.id}">detalles</a></td>
+						<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="${'/professor/edit/' + professor.id}">modificar</a></td>
+						<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="${'/professor/delete/' + professor.id}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>
