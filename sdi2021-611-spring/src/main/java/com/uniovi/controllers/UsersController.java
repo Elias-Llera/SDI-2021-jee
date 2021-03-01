@@ -1,6 +1,10 @@
 package com.uniovi.controllers;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.uniovi.entities.Mark;
 import com.uniovi.entities.User;
 import com.uniovi.services.RolesService;
 import com.uniovi.services.SecurityService;
@@ -24,7 +29,7 @@ public class UsersController {
 
 	@Autowired
 	private UsersService usersService;
-	
+
 	@Autowired
 	private RolesService rolesService;
 
@@ -110,7 +115,9 @@ public class UsersController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String dni = auth.getName();
 		User activeUser = usersService.getUserByDni(dni);
-		model.addAttribute("markList", activeUser.getMarks());
+		Page<Mark> marks = new PageImpl<Mark>(new ArrayList<Mark>(activeUser.getMarks()));
+		model.addAttribute("markList", marks.getContent());
+		model.addAttribute("page", marks);
 		return "home";
 	}
 
