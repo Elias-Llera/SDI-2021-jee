@@ -1,6 +1,7 @@
 package com.uniovi.controllers;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -41,13 +42,14 @@ public class UsersController {
 	private SignUpFormValidator signUpFormValidator;
 
 	@RequestMapping("/user/list")
-	public String getListado(Model model, @RequestParam(value = "", required = false) String searchText) {
-
+	public String getListado(Model model, Pageable pageable, @RequestParam(value = "", required = false) String searchText) {
+		Page<User> users = new PageImpl<User>(new LinkedList<User>());
 		if (searchText != null && !searchText.isEmpty()) {
-			model.addAttribute("usersList", usersService.searchUserByNameAndSurname(searchText));
+			users = usersService.searchUserByNameAndSurname(pageable, searchText);
 		} else {
-			model.addAttribute("usersList", usersService.getUsers());
+			users = usersService.getPagedUsers(pageable);
 		}
+		model.addAttribute("usersList", users.getContent());
 		return "user/list";
 	}
 
